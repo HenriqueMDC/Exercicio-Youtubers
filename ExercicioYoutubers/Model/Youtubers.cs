@@ -10,6 +10,8 @@ namespace Model
 
     public class Youtubers
     {
+        private static int UltimoCodigo;
+        private int Codigo;
         public string NomeCanal;
         public string NomePessoal;
         public double Inscritos;
@@ -28,7 +30,10 @@ namespace Model
         public double Renda;
 
 
-
+        public Youtubers()
+        {
+            Codigo = ++UltimoCodigo;
+        }
 
         public void SetNomeCanal(string nomeCanal)
         {
@@ -110,6 +115,16 @@ namespace Model
             this.Renda = renda;
         }
 
+        public void SetCodigo()
+        {
+            
+        }
+
+        public void Remove(Youtubers youtubers)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetNomePessoal() { return NomePessoal; }
 
         public string GetNomeCanal() { return NomeCanal; }
@@ -142,9 +157,6 @@ namespace Model
 
         public double GetRenda() { return Renda; }
 
-        public void Remove(Youtubers youtubers)
-        {
-            throw new NotImplementedException();
-        }
+        public int GetCodigo() { return UltimoCodigo; }
     }
 }

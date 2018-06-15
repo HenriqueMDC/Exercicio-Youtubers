@@ -12,55 +12,55 @@ namespace ExercicioYoutubers
     [Serializable]
     class YoutuberRepository
     {
-        List<Youtubers> youtuber = new List<Youtubers>();
+        List<Youtubers> youtubers = new List<Youtubers>();
 
         public YoutuberRepository()
         {
             if (File.Exists(CadastroYoutubers.NOME_ARQUIVO))
             {
                 BinaryFormatter binaryReader = new BinaryFormatter();
-                Stream stram = File.OpenRead(CadastroYoutubers.NOME_ARQUIVO);
-                youtuber = ((YoutuberRepository)binaryReader.Deserialize(stram)).ObterYoutubers();
+                Stream stream = File.OpenRead(CadastroYoutubers.NOME_ARQUIVO);
+                youtubers = ((YoutuberRepository)binaryReader.Deserialize(stream)).ObterYoutubers();
+                stream.Close();
             }
         }
-
-        public void AdicionarYoutubers(Youtubers youtubers)
+        public void AdicionarYoutubers(Youtubers youtuber)
         {
-            youtuber.Add(youtubers);
+            youtubers.Add(youtuber);
 
-            EscreverNoArquivosDosYoutubers();
+            EscreverNoArquivoDosYoutubers();
         }
 
-        private void EscreverNoArquivosDosYoutubers()
+        private void EscreverNoArquivoDosYoutubers()
         {
-            BinaryFormatter binatyWrite = new BinaryFormatter();
+            BinaryFormatter binaryWrite = new BinaryFormatter();
             Stream stream = new FileStream(CadastroYoutubers.NOME_ARQUIVO, FileMode.Create, FileAccess.Write);
-            binatyWrite.Serialize(stream, this);
+            binaryWrite.Serialize(stream, this);
             stream.Close();
         }
 
         public List<Youtubers> ObterYoutubers()
         {
-            return youtuber;
+            return youtubers;
         }
 
         internal void ApagarYoutuber(string nomeCanal)
         {
-            foreach (Youtubers youtubers in youtuber)
+            foreach (Youtubers youtuber in youtubers)
             {
-                if (youtubers.GetNomeCanal() == nomeCanal)
+                if (youtuber.GetNomeCanal() == nomeCanal)
                 {
-                    youtubers.Remove(youtubers);
-                    EscreverNoArquivosDosYoutubers();
+                    youtubers.Remove(youtuber);
+                    EscreverNoArquivoDosYoutubers();
                     return;
                 }
             }
         }
 
-        internal void EditarYoutubers(Youtubers youtubers, int posicao)
+        internal void EditarYoutubers(Youtubers youtuber, int posicao)
         {
-            youtuber[posicao] = youtubers;
-            EscreverNoArquivosDosYoutubers();
+            youtubers[posicao] = youtuber;
+            EscreverNoArquivoDosYoutubers();
         }
     }
 }

@@ -44,12 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListaYoutubers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListaYoutubers.Designer.cs">
-      <DependentUpon>ListaYoutubers.cs</DependentUpon>
-    </Compile>
     <Compile Include="CadastroYoutubers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,9 +56,6 @@
     <EmbeddedResource Include="CadastroYoutubers.resx">
       <DependentUpon>CadastroYoutubers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListaYoutubers.resx">
-      <DependentUpon>ListaYoutubers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,6 +84,9 @@
       <Project>{1a5637f8-982c-4762-9b5e-fe50d6c4bc3d}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

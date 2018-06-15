@@ -13,11 +13,20 @@ namespace ExercicioYoutubers
 {
     public partial class CadastroYoutubers : Form
     {
-        int posicao = -1;
-        public static string NOME_ARQUIVO = "Youtubers.bin";
+        private Youtubers youtubers;
+        private int codigo;
+        public int posicao = -1;
+        public static string NOME_ARQUIVO = "Personagens.bin";
+
         public CadastroYoutubers()
         {
             InitializeComponent();
+        }
+
+        public CadastroYoutubers(int codigo)
+        {
+            // TODO: Complete member initialization
+            this.codigo = codigo;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -66,8 +75,8 @@ namespace ExercicioYoutubers
 
             try
             {
-                youtubers.SetVisualizacao(Convert.ToDouble(txtVizualizacao.Text));
-                txtVizualizacao.Focus();
+                youtubers.SetVisualizacao(Convert.ToDouble(txtVisualizacao.Text));
+                txtVisualizacao.Focus();
             }
 
             catch (Exception ex)
@@ -193,8 +202,8 @@ namespace ExercicioYoutubers
                 tudo.EditarYoutubers(youtubers, posicao);
                 MessageBox.Show("Youtuber editado com sucesso");
             }
+            AtualizarListaYoutubers();
             LimparCampos();
-            AtualizarListaDeYoutubers();
         }
 
         private void LimparCampos()
@@ -202,7 +211,7 @@ namespace ExercicioYoutubers
             txtNomePessoal.Text = "";
             txtNomeCanal.Text = "";
             txtQuantidadeInscritos.Text = "";
-            txtVizualizacao.Text = "";
+            txtVisualizacao.Text = "";
             txtQuantidadeVideos.Text = "";
             txtCategoria.Text = "";
             cbAnuncio.SelectedIndex = -1;
@@ -217,8 +226,87 @@ namespace ExercicioYoutubers
             txtRenda.Text = "";
         }
 
+        private void AtualizarListaYoutubers()
+        {
+            YoutuberRepository tudo = new YoutuberRepository();
+            dataGridView1.Rows.Clear();
 
+            foreach (Youtubers youtubers in tudo.ObterYoutubers())
+            {
+                dataGridView1.Rows.Add(new Object[]
+                {
+                    youtubers.GetNomeCanal(),
+                    youtubers.GetNomePessoal(),
+                    youtubers.GetInscritos(),
+                    youtubers.GetQuantidadeDeVideos(),
+                    youtubers.GetLikes(),
+                    youtubers.GetVisualizacao(),
+                    youtubers.GetRenda()
+                });
+            }
+        }
 
+        private void CadastroYoutubers_Activated(object sender, EventArgs e)
+        {
+            AtualizarListaYoutubers();
+        }
 
+        private void CadastroYoutubers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.E))
+            {
+                EditarYoutubers();
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                ApagarYoutuber();
+            }
+        }
+
+        private void EditarYoutubers()
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione uma linha.");
+                return;
+            }
+
+            string nome = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+
+            YoutuberRepository repositorio = new YoutuberRepository();
+
+            int quantidade = 0;
+            foreach (Youtubers personagem in repositorio.ObterYoutubers())
+            {
+                if (personagem.GetNomeCanal() == nome)
+                {
+                    youtubers.GetNomeCanal();
+                    youtubers.GetNomePessoal();
+                    youtubers.GetInscritos();
+                    youtubers.GetQuantidadeDeVideos();
+                    youtubers.GetLikes();
+                    youtubers.GetVisualizacao();
+                    youtubers.GetRenda();
+                    posicao = quantidade;
+                    return;
+                }
+                quantidade++;
+            }
+        }
+            private void ApagarYoutuber()
+            {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione algo neste grid");
+                return;
+            }
+
+                string nome = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                YoutuberRepository repositorio = new YoutuberRepository();
+                repositorio.ApagarYoutuber(nome);
+                MessageBox.Show(nome + " apagado com sucesso.");
+                LimparCampos();
+            }
     }
 }

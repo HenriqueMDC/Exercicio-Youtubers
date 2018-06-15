@@ -36,7 +36,7 @@
             this.txtApelido = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtQuantidadeVideos = new System.Windows.Forms.TextBox();
-            this.txtVizualizacao = new System.Windows.Forms.TextBox();
+            this.txtVisualizacao = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCategoria = new System.Windows.Forms.TextBox();
@@ -60,7 +60,17 @@
             this.txtRenda = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
-            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.NomeCanalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomePessoalColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantidadeDeInscritosColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantidadeDeVideoColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantidadeDeLikeColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantidadeDeViewColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RendaColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label17 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -135,13 +145,13 @@
             this.txtQuantidadeVideos.Size = new System.Drawing.Size(167, 25);
             this.txtQuantidadeVideos.TabIndex = 8;
             // 
-            // txtVizualizacao
+            // txtVisualizacao
             // 
-            this.txtVizualizacao.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVizualizacao.Location = new System.Drawing.Point(126, 87);
-            this.txtVizualizacao.Name = "txtVizualizacao";
-            this.txtVizualizacao.Size = new System.Drawing.Size(167, 25);
-            this.txtVizualizacao.TabIndex = 10;
+            this.txtVisualizacao.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVisualizacao.Location = new System.Drawing.Point(126, 87);
+            this.txtVisualizacao.Name = "txtVisualizacao";
+            this.txtVisualizacao.Size = new System.Drawing.Size(167, 25);
+            this.txtVisualizacao.TabIndex = 10;
             // 
             // label5
             // 
@@ -281,8 +291,9 @@
             // 
             this.cbPlataforma.FormattingEnabled = true;
             this.cbPlataforma.Items.AddRange(new object[] {
-            "Sim",
-            "Não"});
+            "Console",
+            "Pc",
+            "Mobile"});
             this.cbPlataforma.Location = new System.Drawing.Point(126, 216);
             this.cbPlataforma.Name = "cbPlataforma";
             this.cbPlataforma.Size = new System.Drawing.Size(167, 21);
@@ -364,23 +375,98 @@
             this.txtDescricao.Size = new System.Drawing.Size(167, 162);
             this.txtDescricao.TabIndex = 33;
             // 
-            // btnSalvar
+            // btnCadastrar
             // 
-            this.btnSalvar.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(102, 361);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(148, 50);
-            this.btnSalvar.TabIndex = 34;
-            this.btnSalvar.Text = "Cadastrar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnCadastrar.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrar.Location = new System.Drawing.Point(127, 368);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(149, 38);
+            this.btnCadastrar.TabIndex = 34;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NomeCanalColumn,
+            this.NomePessoalColumn1,
+            this.QuantidadeDeInscritosColumn1,
+            this.QuantidadeDeVideoColumn1,
+            this.QuantidadeDeLikeColumn1,
+            this.QuantidadeDeViewColumn1,
+            this.RendaColumn1});
+            this.dataGridView1.Location = new System.Drawing.Point(667, 50);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(745, 405);
+            this.dataGridView1.TabIndex = 38;
+            // 
+            // NomeCanalColumn
+            // 
+            this.NomeCanalColumn.HeaderText = "Nome do Canal";
+            this.NomeCanalColumn.Name = "NomeCanalColumn";
+            this.NomeCanalColumn.ReadOnly = true;
+            // 
+            // NomePessoalColumn1
+            // 
+            this.NomePessoalColumn1.HeaderText = "NomePessoal";
+            this.NomePessoalColumn1.Name = "NomePessoalColumn1";
+            this.NomePessoalColumn1.ReadOnly = true;
+            // 
+            // QuantidadeDeInscritosColumn1
+            // 
+            this.QuantidadeDeInscritosColumn1.HeaderText = "Quantidade de Inscritos";
+            this.QuantidadeDeInscritosColumn1.Name = "QuantidadeDeInscritosColumn1";
+            this.QuantidadeDeInscritosColumn1.ReadOnly = true;
+            // 
+            // QuantidadeDeVideoColumn1
+            // 
+            this.QuantidadeDeVideoColumn1.HeaderText = "Quantidade de Video";
+            this.QuantidadeDeVideoColumn1.Name = "QuantidadeDeVideoColumn1";
+            this.QuantidadeDeVideoColumn1.ReadOnly = true;
+            // 
+            // QuantidadeDeLikeColumn1
+            // 
+            this.QuantidadeDeLikeColumn1.HeaderText = "Quantidade de Like";
+            this.QuantidadeDeLikeColumn1.Name = "QuantidadeDeLikeColumn1";
+            this.QuantidadeDeLikeColumn1.ReadOnly = true;
+            // 
+            // QuantidadeDeViewColumn1
+            // 
+            this.QuantidadeDeViewColumn1.HeaderText = "Quatidade de View";
+            this.QuantidadeDeViewColumn1.Name = "QuantidadeDeViewColumn1";
+            this.QuantidadeDeViewColumn1.ReadOnly = true;
+            // 
+            // RendaColumn1
+            // 
+            this.RendaColumn1.HeaderText = "Renda";
+            this.RendaColumn1.Name = "RendaColumn1";
+            this.RendaColumn1.ReadOnly = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(1227, 14);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(185, 17);
+            this.label17.TabIndex = 39;
+            this.label17.Text = "Para apagar precione F2";
             // 
             // CadastroYoutubers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 467);
-            this.Controls.Add(this.btnSalvar);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(1424, 467);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtRenda);
@@ -404,7 +490,7 @@
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtVizualizacao);
+            this.Controls.Add(this.txtVisualizacao);
             this.Controls.Add(this.txtQuantidadeVideos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtApelido);
@@ -413,9 +499,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomePessoal);
             this.Controls.Add(this.label1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.KeyPreview = true;
             this.Name = "CadastroYoutubers";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.CadastroYoutubers_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CadastroYoutubers_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,7 +523,7 @@
         private System.Windows.Forms.TextBox txtApelido;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtQuantidadeVideos;
-        private System.Windows.Forms.TextBox txtVizualizacao;
+        private System.Windows.Forms.TextBox txtVisualizacao;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCategoria;
@@ -455,7 +547,16 @@
         private System.Windows.Forms.TextBox txtRenda;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtDescricao;
-        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCanalColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomePessoalColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantidadeDeInscritosColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantidadeDeVideoColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantidadeDeLikeColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantidadeDeViewColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RendaColumn1;
+        private System.Windows.Forms.Label label17;
     }
 }
 
